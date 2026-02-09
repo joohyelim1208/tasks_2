@@ -40,11 +40,11 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     });
-    print('할 일이 저장되었습니다.');
     // 다음 입력을 위해 필드를 비우기
     _controller.clear();
     // 저장 후 바텀시트 닫기
     Navigator.pop(context);
+    print('할 일이 저장되었습니다.');
   }
 
   @override
@@ -97,6 +97,8 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // 텍스트창을 한번 더 초기화해줌
+          _controller.clear();
           showModalBottomSheet(
             context: context,
             // 키보드와 함께 바텀시트가 위로 올라옴
@@ -138,6 +140,38 @@ class _HomePageState extends State<HomePage> {
                           // 텍스트 필드 하단 밑줄 없앰
                           border: InputBorder.none,
                         ),
+                      ),
+                      // 아이콘 추가하기
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              // 부가설명
+                              setState(() {
+                                //
+                              });
+                            },
+                            icon: Icon(Icons.short_text_rounded, size: 24),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              // 즐겨찾기. 클릭 시 상태반전, 화면 갱신
+                              setState(() {
+                                // 투두리스트에 있는 description의 상태를 변경한다.
+                              });
+                            },
+                            // 상태에 따른 아이콘 변경. 삼항연산자를 사용한다.
+                            icon: Icon(Icons.star_border, size: 24),
+                          ),
+                          Text(
+                            '저장',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
