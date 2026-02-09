@@ -63,7 +63,42 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          print('오늘의 할 일을 추가해보세요.');
+          showModalBottomSheet(
+            context: context,
+            // 키보드와 함께 바텀시트가 위로 올라옴
+            isScrollControlled: true,
+            builder: (context) {
+              return Padding(
+                // 키보드 높이 만큼 바텀시트에 패딩 추가하기
+                padding: EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 12,
+                  bottom: 0,
+                ),
+
+                child: Column(
+                  // 전체화면을 차지하지 않고 텍스트 내용 만큼만 크기 설정하기. 자식위젯들이 차지하는 공간만큼 줄이라는 뜻
+                  mainAxisSize: MainAxisSize.min,
+                  // 텍스트필드 넣기
+                  children: [
+                    TextField(
+                      // 텍스트필드에 포커스가 잡히도록
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        hintText: '새 할 일',
+                        hintStyle: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            //
+          );
         },
         shape: CircleBorder(),
         backgroundColor: Colors.deepOrange,
