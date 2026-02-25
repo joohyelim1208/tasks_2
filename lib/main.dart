@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/core/domain/todo_entity.dart';
 import 'package:flutter_todo_app/core/page/home/home_page.dart';
+import 'package:flutter_todo_app/core/page/home/widget/todo_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +14,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey[400],
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.deepPurple,
           // 스캐폴드 영역 바깥 전체적인 배경색
