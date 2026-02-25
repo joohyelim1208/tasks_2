@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/core/page/detail/todo_detail_page.dart';
+import 'package:flutter_todo_app/core/page/home/widget/todo_bottomsheet.dart';
 import 'package:flutter_todo_app/core/widget/todo_appBar.dart';
 
 class HomePage extends StatelessWidget {
@@ -64,7 +65,9 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          TodoBottomsheet.show(context);
+        },
         shape: CircleBorder(),
         backgroundColor: Colors.deepOrange,
         child: Icon(Icons.add, size: 24, color: Colors.white),
