@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/core/domain/todo_entity.dart';
 import 'package:flutter_todo_app/core/page/home/home_page.dart';
-import 'package:flutter_todo_app/core/page/home/widget/todo_view.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/core/page/detail/todo_detail_page.dart';
-import 'package:flutter_todo_app/core/page/home/widget/todo_bottomsheet.dart';
+import 'package:flutter_todo_app/core/page/home/todo_bottom_Sheet.dart';
 import 'package:flutter_todo_app/core/widget/todo_appBar.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,6 +8,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // 화면에 키보드가 나타날 때 화면 크기를 줄여 키보드 위로 올릴지 결정하는 역할. 로그인화면에서는 true로 자동 크기조절 하는게 좋다.
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       appBar: const TodoAppbar(),
       body: SafeArea(
@@ -66,7 +67,14 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          TodoBottomsheet.show(context);
+          showModalBottomSheet(
+            context: context,
+            // 컨트롤러
+            isScrollControlled: true,
+            builder: (BuildContext context) {
+              return TodoBottmSheet();
+            },
+          );
         },
         shape: CircleBorder(),
         backgroundColor: Colors.deepOrange,
