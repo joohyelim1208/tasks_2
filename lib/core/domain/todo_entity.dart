@@ -1,3 +1,4 @@
+// 식료품 상자. 데이터의 규격
 class TodoEntity {
   // 수정이 가능하도록 final제거
   String title;

@@ -1,8 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/core/domain/todo_entity.dart';
 
+// '저장'은 2단계로 생각하면 되는데
+// 여기서는 사용자가 입력한 텍스트를 newTodo 객체에 담아두는 입력 단계이고, 전달하고 반영하는 단계는 바텀시트가 닫힐 때, 메인리스트인 todoList에 집어넣는 것
+// 주문서 작성. 손님이 메뉴를 고르고 요청하는 주문서
 class TodoBottmSheet extends StatefulWidget {
   const TodoBottmSheet({super.key});
 
