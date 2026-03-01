@@ -92,7 +92,7 @@ class _TodoBottmSheetState extends State<TodoBottmSheet> {
 
               // 부가설명 아이콘을 눌렀을 때 나타나는 텍스트 필드 로직
               if (isDescriptionPop)
-                // 줄이 늘어났을 때 view가 깨지지 않도록 감싸줄 것.
+                // 줄이 늘어났을 때 view가 깨지지 않도록 감싸줄 것.(깨지는 현상이 없어서 Expanded를 사용하지는 않았음)
                 TextField(
                   controller: _descController,
                   autofocus: true,
@@ -146,9 +146,9 @@ class _TodoBottmSheetState extends State<TodoBottmSheet> {
                   // 저장 버튼
                   TextButton(
                     onPressed: () {
-                      // 저장이 작동되면 ToDO객체를 반환하고 창닫기
                       newTodo.title.trim().isEmpty
                           ? null
+                          // 저장이 작동되면 ToDO객체를 반환하고 창닫기
                           : Navigator.pop(context, newTodo);
                       print('${newTodo.title}반환완료');
                     },

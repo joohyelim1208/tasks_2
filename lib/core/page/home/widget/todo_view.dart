@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/core/domain/todo_entity.dart';
+import 'package:flutter_todo_app/core/page/detail/todo_detail_page.dart';
 
 // 음식접시. 주방에서 만든 음식을 담아 손님에게 내놓는 그릇.
 // TodoEntity를 인자로 받음
@@ -12,12 +13,15 @@ class TodoView extends StatefulWidget {
     required this.toDo,
     required this.onToggleFavorite,
     required this.onToggleDone,
+    required this.onUpdate,
   });
   // 데이터를 저장할 변수
   final TodoEntity toDo;
   final int index;
   final VoidCallback onToggleFavorite;
   final VoidCallback onToggleDone;
+  // 즐겨찾기 업데이트 신호를 보낼 바구니 추가함
+  final VoidCallback onUpdate;
 
   @override
   State<TodoView> createState() => _TodoViewState();
@@ -54,6 +58,7 @@ class _TodoViewState extends State<TodoView> {
           // 실제 데이터를 연결하기
           title: Text(
             // 리스트의 개수가 늘 수록 할 일 뒤에 숫자 카운트의 변화가 있도록 한다면?
+            // 인덱스 값을 주고 싶으면 변수와 생성자를 만들어 준 뒤, 홈페이지에서도 인덱스를 추가해서 수정해주어야 함!!
             '${widget.index + 1} ${widget.toDo.title}',
             // Done 상태에 따라서 타이틀에 취소선 상태를 적용시키기
             style: TextStyle(
@@ -74,9 +79,18 @@ class _TodoViewState extends State<TodoView> {
                   : Colors.black54,
             ),
           ),
-          onTap: () {
-            // 탭 동작 처리
-            print('탭 됨');
+          // '전체'를 눌렀을 때 상세페이지 이동
+          onTap: () async {
+            await Navigator.of(context).push<TodoEntity>(
+              MaterialPageRoute(
+                // 디테일페이지로 이동하면서 현재 위젯이 가지고 있는 toDo 데이터를 넘겨줌. Navigator.push
+                builder: (context) =>
+                    TodoDetailPage(toDo: widget.toDo, index: widget.index),
+              ),
+            );
+            // 바구니가 있든 없든 상세페이지에 갔다왔으면 무조건 홈 화면 새로고침 신호보내기
+            // 홈페이지 가서 온업데이트 함수 넣어주기
+            widget.onUpdate();
           },
         ),
       ),

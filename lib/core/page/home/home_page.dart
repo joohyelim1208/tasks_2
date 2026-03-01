@@ -22,7 +22,11 @@ class _HomePageState extends State<HomePage> {
       // 화면에 키보드가 나타날 때 화면 크기를 줄여 키보드 위로 올릴지 결정하는 역할. 로그인화면에서는 true로 자동 크기조절 하는게 좋다.
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
-      appBar: const TodoAppbar(),
+      appBar: const TodoAppbar(
+        title: '혜림`s Tasks',
+        actions: [],
+        showBack: false,
+      ),
       body: SafeArea(
         bottom: false,
         // 1. 삼항연산자 사용. 리스트가 비었으면 빈 화면을 보여주고 아니면 2. 리스트뷰 빌더를 사용해서 투두뷰 보여줌
@@ -105,6 +109,12 @@ class _HomePageState extends State<HomePage> {
                           item.isDone = !item.isDone;
                         });
                         print('${item.title} 완료');
+                      },
+                      // 즐겨찾기 변경
+                      onUpdate: () {
+                        setState(() {
+                          // 아무 로직도 넣지 말기. 괄호가 실행되는 것 만드로도 리스트는 최신데이터를 다시 그림
+                        });
                       },
                     );
                   },
